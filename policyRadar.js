@@ -25,12 +25,13 @@ function RadarChart(id, data, options) {
   }
   
   // extract figures from csv data
-  for (var figures = []; figures.push([]) < 4;);
+  for (var figures = []; figures.push([]) < 5;);
   data.forEach(function (line) {
     figures[0].push(line["Green"]);
     figures[1].push(line["Labour"]);
     figures[2].push(line["National"]);
     figures[3].push(line["New Zealand First"]);
+    figures[4].push(line["Total"]);
   });
   
   var allAxis = (data.map(function (i, j) {
