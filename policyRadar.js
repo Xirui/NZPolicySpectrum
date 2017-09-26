@@ -141,12 +141,34 @@ function RadarChart(id, data, options) {
   if (cfg.roundStrokes) {
     radarLine.curve(d3.curveCardinalClosed);
   }
-  
+
+  var counter = 0;
+
   // create a wrapper for the blobs
   var blobWrapper = g.selectAll(".radarWrapper")
     .data(figures)
     .enter().append("g")
-    .attr("class", "radarWrapper");
+    .attr("class", function(){
+      var radarWrapper = "radarWrapper";
+        switch(counter){
+            case 0:
+                counter++;
+                return radarWrapper + " Green";
+            case 1:
+                counter++;
+                return radarWrapper + " Labour";
+            case 2:
+                counter++;
+                return radarWrapper + " National";
+            case 3:
+                counter++;
+                return radarWrapper + " NZFirst";
+            case 4:
+                counter++;
+                return radarWrapper + " Total";
+        }
+    })
+    .attr("visibility", "visible");
   
   // append the backgrounds
   blobWrapper
