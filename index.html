@@ -7,19 +7,89 @@
   <script src="d3.v4.min.js"></script>
   
   <style>
+    .toggleButton {
+      border-radius:3px;
+      border:1px solid #000000;
+      display:inline-block;
+      cursor:pointer;
+      color:#ffffff;
+      font-family: 'Open Sans', sans-serif;
+      font-size:14px;
+      padding:6px 24px;
+    }
+    .toggleButton:active {
+      position:relative;
+      top:1px;
+    }
+    .NationalButton{
+      background:linear-gradient(to bottom, #1941ff 5%, #162b77 100%);
+    }
+    .NationalButton:hover{
+      background:linear-gradient(to top, #1941ff 5%, #162b77 100%);
+    }
+    .LabourButton{
+      background:linear-gradient(to bottom, #e3404f 5%, #95262e 100%);
+    }
+    .LabourButton:hover{
+      background:linear-gradient(to top, #e3404f 5%, #95262e 100%);
+    }
+    .GreenButton{
+      background:linear-gradient(to bottom, #00cb3f 5%, #00762f 100%);
+    }
+    .GreenButton:hover{
+      background:linear-gradient(to top, #00cb3f 5%, #00762f 100%);
+    }
+    .NZFirstButton{
+      background:linear-gradient(to bottom, #8e8e8e 5%, #08001c 100%);
+    }
+    .NZFirstButton:hover{
+      background:linear-gradient(to top, #8e8e8e 5%, #08001c 100%);
+    }
+    .TotalButton{
+      background:linear-gradient(to bottom, #eee80a 5%, #857f0a 100%);
+    }
+    .TotalButton:hover{
+      background:linear-gradient(to top, #eee80a 5%, #857f0a 100%);
+    }
+
     body {
       font-family: 'Open Sans', sans-serif;
       font-size: 14px;
       font-weight: 300;
       fill: #242424;
       text-align: center;
-      text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+      /*text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;*/
       cursor: default;
-    }
+    } 
+
   </style>
+
+  <script>
+      /**
+       * Toggles visibility of individual party radar wrappers.
+       * @param party   Class name for radar wrapper to be toggled.
+       */
+    function partyToggle(party){
+        var partyRadar = document.getElementsByClassName("radarWrapper " + party)[0];
+        if(partyRadar.getAttribute("visibility") === "visible"){
+            partyRadar.setAttribute("visibility", "hidden");
+        }else{
+            partyRadar.setAttribute("visibility", "visible");
+        }
+
+
+    }
+  </script>
 
 </head>
 <body>
+<div id="parties">
+  <p onclick="partyToggle('National')" class="toggleButton NationalButton">National</p>
+  <p onclick="partyToggle('Labour')" class="toggleButton LabourButton">Labour</p>
+  <p onclick="partyToggle('Green')" class="toggleButton GreenButton">Green</p>
+  <p onclick="partyToggle('NZFirst')" class="toggleButton NZFirstButton">NZ First</p>
+  <p onclick="partyToggle('Total')" class="toggleButton TotalButton">Total</p>
+</div>
 
 <div class="immigrationRadarChart"></div>
 <!--define other charts below-->
