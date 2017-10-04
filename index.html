@@ -141,6 +141,15 @@
         <div class="healthcareIssuesRadarChart chart" id="healthcareIssues" style="display: none"></div>
         <div class="scienceIssuesRadarChart chart" id="scienceIssues" style="display: none"></div>
         <div class="immigrationRadarChart chart" id="immigrationIssues"></div>
+        <div class="economicIssuesRadarChart chart" id="economicIssues" style="display: none"></div>
+        <div class="foreignPolicyIssuesRadarChart chart" id="foreignPolicyIssues" style="display: none"></div>
+        <div class="environmentalPolicyIssuesRadarChart chart" id="environmentalPolicyIssues" style="display: none"></div>
+        <div class="domesticPolicyIssuesRadarChart chart" id="domesticPolicyIssues" style="display: none"></div>
+        <div class="educationIssuesRadarChart chart" id="educationIssues" style="display: none"></div>
+        <div class="housingIssuesRadarChart chart" id="housingIssues" style="display: none"></div>
+        <div class="electoralIssuesRadarChart chart" id="electoralIssues" style="display: none"></div>
+        <div class="criminalIssuesRadarChart chart" id="criminalIssues" style="display: none"></div>
+        <div class="nationalSecurityIssuesRadarChart chart" id="nationalSecurityIssues" style="display: none"></div>
         <!--define other charts below-->
         <!--<div class="healthcareRadarChart"></div>-->
     </div>
@@ -183,6 +192,34 @@
   d3.csv("data/scienceIssues.csv", function(data){
       RadarChart(".scienceIssuesRadarChart", data, radarChartOptions);
   });
+  d3.csv("data/economicIssues.csv", function(data){
+      RadarChart(".economicIssuesRadarChart", data, radarChartOptions);
+  });
+  d3.csv("data/foreignPolicyIssues.csv", function(data){
+      RadarChart(".foreignPolicyIssuesRadarChart", data, radarChartOptions);
+  });
+  d3.csv("data/environmentalPolicyIssues.csv", function(data){
+      RadarChart(".environmentalPolicyIssuesRadarChart", data, radarChartOptions);
+  });
+  d3.csv("data/domesticPolicyIssues.csv", function(data){
+      RadarChart(".domesticPolicyIssuesRadarChart", data, radarChartOptions);
+  });
+  d3.csv("data/educationIssues.csv", function(data){
+      RadarChart(".educationIssuesRadarChart", data, radarChartOptions);
+  });
+  d3.csv("data/housingIssues.csv", function(data){
+      RadarChart(".housingIssuesRadarChart", data, radarChartOptions);
+  });
+  d3.csv("data/electoralIssues.csv", function(data){
+      RadarChart(".electoralIssuesRadarChart", data, radarChartOptions);
+  });
+  d3.csv("data/criminalIssues.csv", function(data){
+      RadarChart(".criminalIssuesRadarChart", data, radarChartOptions);
+  });
+  d3.csv("data/nationalSecurityIssues.csv", function(data){
+      RadarChart(".nationalSecurityIssuesRadarChart", data, radarChartOptions);
+  });
+
 </script>
 
 
