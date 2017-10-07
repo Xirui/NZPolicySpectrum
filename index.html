@@ -94,19 +94,25 @@
             partyRadar.setAttribute("visibility", "visible");
         }
     }
-
+    
       /**
        * Toggles visibility of individual radar charts.
        * @param issue   Name of issue to become visible.
        */
     function issueToggle(issue){
         var charts = document.getElementsByClassName("chart");
+        // remove all svgs created - dirty hack
         for(var i = 0; i < charts.length; i++){
-            charts[i].style.display = "none";
+            d3.select(charts[i]).select("svg").remove();
         }
+        
         var chartToDisplay = document.getElementById(issue);
+        d3.csv("data/"+issue+".csv", function(data){
+            RadarChart("."+issue+"RadarChart", data, radarChartOptions);
+        });
         chartToDisplay.style.display = "inline-block";
-    }
+        console.log("displaying " + issue);
+      }
   </script>
 
 </head>
@@ -123,33 +129,33 @@
   <div id="Issues">
     <p onclick="issueToggle('socialIssues')" class="toggleButton issue">Social Issues</p>
     <p onclick="issueToggle('healthcareIssues')" class="toggleButton issue">Healthcare Issues</p>
-    <p onclick="issueToggle('scienceIssues')" class="toggleButton issue">Science Issues</p>
+    <!--<p onclick="issueToggle('scienceIssues')" class="toggleButton issue">Science Issues</p>-->
     <p onclick="issueToggle('immigrationIssues')" class="toggleButton issue" >Immigration Issues</p>
     <p onclick="issueToggle('economicIssues')" class="toggleButton issue">Economic Issues</p>
     <p onclick="issueToggle('foreignPolicyIssues')" class="toggleButton issue">Foreign Policy Issues</p>
     <p onclick="issueToggle('environmentalPolicyIssues')" class="toggleButton issue">Environmental Policy Issues</p>
     <p onclick="issueToggle('domesticPolicyIssues')" class="toggleButton issue">Domestic Policy Issues</p>
-    <p onclick="issueToggle('educationIssues')" class="toggleButton issue">Education Issues</p>
+    <!--<p onclick="issueToggle('educationIssues')" class="toggleButton issue">Education Issues</p>-->
     <p onclick="issueToggle('housingIssues')" class="toggleButton issue">Housing Issues</p>
     <p onclick="issueToggle('electoralIssues')" class="toggleButton issue">Electoral Issues</p>
-    <p onclick="issueToggle('criminalIssues')" class="toggleButton issue">Criminal Issues</p>
-    <p onclick="issueToggle('nationalSecurityIssues')" class="toggleButton issue">National Security Issues</p>
+    <!--<p onclick="issueToggle('criminalIssues')" class="toggleButton issue">Criminal Issues</p>-->
+    <!--<p onclick="issueToggle('nationalSecurityIssues')" class="toggleButton issue">National Security Issues</p>-->
   </div>
 
     <div id="charts">
         <div class="socialIssuesRadarChart chart" id="socialIssues" style="display: none"></div>
         <div class="healthcareIssuesRadarChart chart" id="healthcareIssues" style="display: none"></div>
-        <div class="scienceIssuesRadarChart chart" id="scienceIssues" style="display: none"></div>
-        <div class="immigrationRadarChart chart" id="immigrationIssues"></div>
+        <!--<div class="scienceIssuesRadarChart chart" id="scienceIssues" style="display: none"></div>-->
+        <div class="immigrationIssuesRadarChart chart" id="immigrationIssues"></div>
         <div class="economicIssuesRadarChart chart" id="economicIssues" style="display: none"></div>
         <div class="foreignPolicyIssuesRadarChart chart" id="foreignPolicyIssues" style="display: none"></div>
         <div class="environmentalPolicyIssuesRadarChart chart" id="environmentalPolicyIssues" style="display: none"></div>
         <div class="domesticPolicyIssuesRadarChart chart" id="domesticPolicyIssues" style="display: none"></div>
-        <div class="educationIssuesRadarChart chart" id="educationIssues" style="display: none"></div>
+        <!--<div class="educationIssuesRadarChart chart" id="educationIssues" style="display: none"></div>-->
         <div class="housingIssuesRadarChart chart" id="housingIssues" style="display: none"></div>
         <div class="electoralIssuesRadarChart chart" id="electoralIssues" style="display: none"></div>
-        <div class="criminalIssuesRadarChart chart" id="criminalIssues" style="display: none"></div>
-        <div class="nationalSecurityIssuesRadarChart chart" id="nationalSecurityIssues" style="display: none"></div>
+        <!--<div class="criminalIssuesRadarChart chart" id="criminalIssues" style="display: none"></div>-->
+        <!--<div class="nationalSecurityIssuesRadarChart chart" id="nationalSecurityIssues" style="display: none"></div>-->
         <!--define other charts below-->
         <!--<div class="healthcareRadarChart"></div>-->
     </div>
@@ -180,45 +186,45 @@
   };
   
   // read csv and draw radar for immigration topic
-  d3.csv("data/immigration.csv", function(data) {
-    RadarChart(".immigrationRadarChart", data, radarChartOptions);
-  });
+//  d3.csv("data/immigrationIssues.csv", function(data) {
+//    RadarChart(".immigrationRadarChart", data, radarChartOptions);
+//  });
   d3.csv("data/socialIssues.csv", function(data){
       RadarChart(".socialIssuesRadarChart", data, radarChartOptions);
   });
-  d3.csv("data/healthcareIssues.csv", function(data){
-      RadarChart(".healthcareIssuesRadarChart", data, radarChartOptions);
-  });
-  d3.csv("data/scienceIssues.csv", function(data){
-      RadarChart(".scienceIssuesRadarChart", data, radarChartOptions);
-  });
-  d3.csv("data/economicIssues.csv", function(data){
-      RadarChart(".economicIssuesRadarChart", data, radarChartOptions);
-  });
-  d3.csv("data/foreignPolicyIssues.csv", function(data){
-      RadarChart(".foreignPolicyIssuesRadarChart", data, radarChartOptions);
-  });
-  d3.csv("data/environmentalPolicyIssues.csv", function(data){
-      RadarChart(".environmentalPolicyIssuesRadarChart", data, radarChartOptions);
-  });
-  d3.csv("data/domesticPolicyIssues.csv", function(data){
-      RadarChart(".domesticPolicyIssuesRadarChart", data, radarChartOptions);
-  });
-  d3.csv("data/educationIssues.csv", function(data){
-      RadarChart(".educationIssuesRadarChart", data, radarChartOptions);
-  });
-  d3.csv("data/housingIssues.csv", function(data){
-      RadarChart(".housingIssuesRadarChart", data, radarChartOptions);
-  });
-  d3.csv("data/electoralIssues.csv", function(data){
-      RadarChart(".electoralIssuesRadarChart", data, radarChartOptions);
-  });
-  d3.csv("data/criminalIssues.csv", function(data){
-      RadarChart(".criminalIssuesRadarChart", data, radarChartOptions);
-  });
-  d3.csv("data/nationalSecurityIssues.csv", function(data){
-      RadarChart(".nationalSecurityIssuesRadarChart", data, radarChartOptions);
-  });
+//  d3.csv("data/healthcareIssues.csv", function(data){
+//      RadarChart(".healthcareIssuesRadarChart", data, radarChartOptions);
+//  });
+//  d3.csv("data/scienceIssues.csv", function(data){
+//      RadarChart(".scienceIssuesRadarChart", data, radarChartOptions);
+//  });
+//  d3.csv("data/economicIssues.csv", function(data){
+//      RadarChart(".economicIssuesRadarChart", data, radarChartOptions);
+//  });
+//  d3.csv("data/foreignPolicyIssues.csv", function(data){
+//      RadarChart(".foreignPolicyIssuesRadarChart", data, radarChartOptions);
+//  });
+//  d3.csv("data/environmentalPolicyIssues.csv", function(data){
+//      RadarChart(".environmentalPolicyIssuesRadarChart", data, radarChartOptions);
+//  });
+//  d3.csv("data/domesticPolicyIssues.csv", function(data){
+//      RadarChart(".domesticPolicyIssuesRadarChart", data, radarChartOptions);
+//  });
+//  d3.csv("data/educationIssues.csv", function(data){
+//      RadarChart(".educationIssuesRadarChart", data, radarChartOptions);
+//  });
+//  d3.csv("data/housingIssues.csv", function(data){
+//      RadarChart(".housingIssuesRadarChart", data, radarChartOptions);
+//  });
+//  d3.csv("data/electoralIssues.csv", function(data){
+//      RadarChart(".electoralIssuesRadarChart", data, radarChartOptions);
+//  });
+//  d3.csv("data/criminalIssues.csv", function(data){
+//      RadarChart(".criminalIssuesRadarChart", data, radarChartOptions);
+//  });
+//  d3.csv("data/nationalSecurityIssues.csv", function(data){
+//      RadarChart(".nationalSecurityIssuesRadarChart", data, radarChartOptions);
+//  });
 
 </script>
 
